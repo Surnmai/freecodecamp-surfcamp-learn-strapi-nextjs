@@ -5,9 +5,10 @@ const nextConfig: NextConfig = {
 };
 
 module.exports = {
-  devIndicators: {
-    buildActivity: false,
-  },
+  devIndicators: false,
 };
+
+// Add to next.config.js
+// process.env.NODE_OPTIONS = "--dns-result-order=ipv4first";
 
 export default nextConfig;
