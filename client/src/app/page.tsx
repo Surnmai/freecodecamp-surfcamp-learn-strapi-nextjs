@@ -1,3 +1,4 @@
+import { HeroSection } from "@/components/blocks/HeroSection";
 import { getHomePage } from "@/data/loaders";
 import { notFound } from "next/navigation";
 // import qs from "qs";
@@ -41,7 +42,7 @@ const loader = async () => {
   // const url = "http://127.0.0.1:1337/api/home-page";
   // const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
 
-  // const url = new URL(path, BASE_URL);
+  // const url = new URL(path.href, BASE_URL);
   // url.search = homePageQuery;
 
   // const res = await fetch(url);
@@ -59,12 +60,15 @@ const loader = async () => {
 
 export default async function Home() {
   const data = await loader();
+  const blocks = data?.blocks || [];
 
   return (
     <div>
-      <h1>{data.tittle}</h1>
+      {/* <h1>{data.tittle}</h1>
       <p>{data.description}</p>
-      {/* <p>{data.createdAt}</p> */}
+      <p>{data.createdAt}</p> */}
+
+      <HeroSection {...blocks[0]} />
     </div>
   );
 }
