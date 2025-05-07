@@ -17,14 +17,15 @@ export interface BlocksHeroSection extends Struct.ComponentSchema {
 export interface BlocksInfoBlock extends Struct.ComponentSchema {
   collectionName: 'components_blocks_info_blocks';
   info: {
+    description: '';
     displayName: 'Info Block';
   };
   attributes: {
-    content: Schema.Attribute.Blocks;
+    content: Schema.Attribute.RichText;
     cta: Schema.Attribute.Component<'elements.link', false>;
     headline: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
-    reverse: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     theme: Schema.Attribute.Enumeration<['turquoise', 'orange']>;
   };
 }
@@ -52,6 +53,31 @@ export interface ElementsLogo extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutFooter extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    copy: Schema.Attribute.String;
+    logo: Schema.Attribute.Component<'elements.logo', false>;
+    navigation: Schema.Attribute.Component<'elements.link', true>;
+    policies: Schema.Attribute.Component<'elements.link', true>;
+  };
+}
+
+export interface LayoutHeader extends Struct.ComponentSchema {
+  collectionName: 'components_layout_headers';
+  info: {
+    displayName: 'Header';
+  };
+  attributes: {
+    cta: Schema.Attribute.Component<'elements.link', false>;
+    logo: Schema.Attribute.Component<'elements.logo', false>;
+    navigation: Schema.Attribute.Component<'elements.link', true>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -59,6 +85,8 @@ declare module '@strapi/strapi' {
       'blocks.info-block': BlocksInfoBlock;
       'elements.link': ElementsLink;
       'elements.logo': ElementsLogo;
+      'layout.footer': LayoutFooter;
+      'layout.header': LayoutHeader;
     }
   }
 }

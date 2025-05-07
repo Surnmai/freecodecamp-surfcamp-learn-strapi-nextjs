@@ -1,26 +1,25 @@
 {
   "collectionName": "components_blocks_info_blocks",
   "info": {
-    "displayName": "Info Block"
+    "displayName": "Info Block",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "reverse": {
+    "reversed": {
       "type": "boolean",
       "default": false
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "headline": {
       "type": "string"
-    },
-    "content": {
-      "type": "blocks"
     },
     "cta": {
       "type": "component",
@@ -33,6 +32,9 @@
         "turquoise",
         "orange"
       ]
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }

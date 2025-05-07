@@ -1,6 +1,9 @@
+import { BlockRenderer } from "@/components/BlockRenderer";
 import { HeroSection } from "@/components/blocks/HeroSection";
+import { InfoBlock } from "@/components/blocks/InfoBlock";
 import { getHomePage } from "@/data/loaders";
 import { notFound } from "next/navigation";
+
 // import qs from "qs";
 
 // trying without the Strapi fetch
@@ -54,21 +57,24 @@ const loader = async () => {
 
   const data = await getHomePage();
   if (!data) notFound;
-  console.log(data);
+  // console.log(data);
   return { ...data.data };
 };
 
 export default async function Home() {
   const data = await loader();
   const blocks = data?.blocks || [];
+  return <BlockRenderer blocks={blocks} />;
 
-  return (
-    <div>
-      {/* <h1>{data.tittle}</h1>
-      <p>{data.description}</p>
-      <p>{data.createdAt}</p> */}
+  // return (
+  //   <div>
+  //     {/* <h1>{data.tittle}</h1>
+  //     <p>{data.description}</p>
+  //     <p>{data.createdAt}</p> */}
 
-      <HeroSection {...blocks[0]} />
-    </div>
-  );
+  //     <HeroSection {...blocks[0]} />
+  //     <InfoBlock {...blocks[1]} />
+  //     <InfoBlock {...blocks[2]} />
+  //   </div>
+  // );
 }
